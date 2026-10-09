@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Corpus-derived topic controls, following the recipe in *Measurable
-Writing Standards for AI-Native Venues* (docs/papers/, Appendix E), which
-in turn follows Weißer et al. (2020).
+"""Corpus-derived topic controls, following the recipe in Rangarajan &
+Krishnan, *Measurable Writing Standards for AI-Native Venues*
+(docs/related_work.md, Appendix E of the paper), which in turn follows
+Weißer et al. (2020).
 
 Why: that paper shows a Simpson's reversal in the readability-citation
 association — across topics the least readable topics are the most cited,

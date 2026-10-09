@@ -1,14 +1,17 @@
 # Related work grounding this design
 
-Three papers sit directly under this study. Copies are in
-[`docs/papers/`](papers/); this note records what each one is and which
-design decisions here it drives.
+Three papers sit directly under this study. This note records what each
+one is and which design decisions here it drives. The two Rangarajan &
+Krishnan papers are linked at OpenReview (BibTeX at the end of this
+file); the published Arditi et al. paper is kept in
+[`docs/papers/`](papers/).
 
 ## 1. The upstream study: LLM judges vs readability metrics
 
 Rangarajan & Krishnan, *LLM Judges Agree With Each Other and Disagree
-With Human-Grounded Readability Metrics* (UncertaiNLP 2026, non-archival).
-[PDF](papers/rangarajan-krishnan-2026-llm-judges-vs-readability-metrics.pdf)
+With Human-Grounded Readability Metrics* (The Third Workshop on
+Uncertainty-Aware NLP, 2026).
+[OpenReview](https://openreview.net/forum?id=sOKzkunyhD)
 — the paper whose pipeline this repository forks
 ([`armandyam/abstract-audit`](https://github.com/armandyam/abstract-audit)).
 
@@ -40,11 +43,10 @@ Consequences here:
 
 ## 2. The citation precedent: measurable writing standards
 
-Anonymous, *Measurable Writing Standards for AI-Native Venues* (NeurIPS
-2026 submission).
-[PDF](papers/anon-2026-measurable-writing-standards.pdf) — note the
-draft-template "do not distribute" footer; the copy here is kept at the
-repository owner's direction.
+Rangarajan & Krishnan, *Measurable Writing Standards for AI-Native
+Venues* (NeurIPS 2026 Workshop on AI-Native Academia: Authorship, Peer
+Review, and Conference Governance under AI).
+[OpenReview](https://openreview.net/forum?id=JXxRLziwgY)
 
 Scales the same measurement program to ~2.8M arXiv, 30,595 NeurIPS and
 24.5M PubMed papers. Its finding F3 and Appendix E are the closest
@@ -95,3 +97,34 @@ comparisons), variance (error bars), coherence ablations, limitations,
 and a code link — the last in a title-page footnote, which is why the
 Tier-3 `code_link` feature reads the globally collected URL list, not
 only named sections.
+
+## Citations
+
+```bibtex
+@inproceedings{
+rangarajan2026llm,
+title={{LLM} Judges Agree With Each Other and Disagree With Human-Grounded Readability Metrics},
+author={Ajay Mandyam Rangarajan and Jeyashree Krishnan},
+booktitle={The Third Workshop on Uncertainty-Aware NLP},
+year={2026},
+url={https://openreview.net/forum?id=sOKzkunyhD}
+}
+
+@inproceedings{
+rangarajan2026measurable,
+title={Measurable Writing Standards for {AI}-Native Venues},
+author={Ajay Mandyam Rangarajan and Jeyashree Krishnan},
+booktitle={NeurIPS 2026 Workshop on AI-Native Academia: Authorship, Peer Review, and Conference Governance under AI},
+year={2026},
+url={https://openreview.net/forum?id=JXxRLziwgY}
+}
+
+@inproceedings{
+arditi2024refusal,
+title={Refusal in Language Models Is Mediated by a Single Direction},
+author={Andy Arditi and Oscar Obeso and Aaquib Syed and Daniel Paleka and Nina Panickssery and Wes Gurnee and Neel Nanda},
+booktitle={Advances in Neural Information Processing Systems 37},
+year={2024},
+url={https://arxiv.org/abs/2406.11717}
+}
+```

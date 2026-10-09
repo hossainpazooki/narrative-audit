@@ -3,8 +3,9 @@
 Amendment 1): regressions of log1p(citations) on the rubric features.
 
 The specification is reconciled with the published precedent (Appendix E
-of *Measurable Writing Standards for AI-Native Venues*, docs/papers/),
-so coefficients land on a comparable scale:
+of Rangarajan & Krishnan, *Measurable Writing Standards for AI-Native
+Venues*; see docs/related_work.md), so coefficients land on a
+comparable scale:
 
 - confounds enter as log(abstract word count) and log(author count);
 - every continuous predictor is z-scored on the estimation sample, so
