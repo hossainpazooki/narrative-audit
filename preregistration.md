@@ -74,9 +74,11 @@ Outcomes: `log1p(citations)` (primary, regressions) and `cites_per_year`
 ## Inference criteria
 
 Effect sizes with confidence intervals are the primary report. Following
-the source post's statistical-rigor advice, any result with
-`.005 < p < .05` is flagged weak (`weak_p` in every output table) and not
-claimed as a finding on its own.
+the source post's statistical-rigor advice (which cites a 74% replication
+rate for psychology findings at `p ≤ .005` against 28% at
+`.005 < p < .05`, Gordon et al. 2021), any result with `.005 < p < .05`
+is flagged weak (`weak_p` in every output table) and not claimed as a
+finding on its own.
 
 ## Measurement validity checks (reported regardless of direction)
 
