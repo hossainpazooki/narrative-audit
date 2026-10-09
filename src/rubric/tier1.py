@@ -324,10 +324,22 @@ def main() -> None:
     os.makedirs(args.out_dir, exist_ok=True)
     pq_path = os.path.join(args.out_dir, "rubric_abstract.parquet")
     df.to_parquet(pq_path, index=False)
+    # Tier-2 score distributions: the upstream study found its judges
+    # using ~2 levels of a 5-point scale, so scale collapse must be
+    # visible before anyone interprets judge variance.
+    tier2_distributions = {}
+    for p in TIER2_PROMPTS:
+        col = df[f"judge_{p}"].dropna()
+        if len(col):
+            binned = (col.astype(float) * 2).round() / 2
+            tier2_distributions[p] = {str(k): int(v) for k, v in
+                                      binned.value_counts().sort_index().items()}
+
     report = {
         "papers":            int(len(df)),
         "tier2_scored":      scored,
         "tier2_unscored":    int(len(df) - scored),
+        "tier2_distributions": tier2_distributions,
         "claim_strength":    {k: int(v) for k, v in df["claim_strength"].value_counts().items()},
         "concrete_number":   int(df["concrete_number"].sum()),
     }

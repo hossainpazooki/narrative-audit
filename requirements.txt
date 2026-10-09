@@ -17,6 +17,10 @@ pyarrow==25.0.1
 scipy==1.18.1
 statsmodels==0.15.0
 requests==2.34.2
+# scikit-learn computes the corpus-derived topic controls
+# (src/outcomes/topics.py); its k-means/SVD internals are part of the
+# result, hence the exact pin.
+scikit-learn==1.9.1
 
 # Full-text stage only (the pipeline runs without it when no sample exists):
 # pymupdf parses PDFs on the fallback path; GROBID is an external server

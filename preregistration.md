@@ -4,7 +4,9 @@ Date: 2026-10-09
 Status: committed before any `rubric_*` stage has produced results. The
 rubric stages (`src/rubric/tier1.py`, `src/rubric/tier3.py`) refuse to run
 when this file is absent. Features or models added after this file are
-labeled exploratory in the paper.
+labeled exploratory in the paper. Amendment 1 (below, same date) was also
+committed before any rubric stage ran on real data; its changes are part
+of the preregistered design, not exploratory.
 
 ## Research question
 
@@ -96,6 +98,43 @@ target 1,500 primary papers, same-stratum replacement queue capped at 10%
 overdraw (`src/sample/stratify.py`). Papers whose full text cannot be
 fetched or parsed are excluded from Tier 3 and counted, never silently
 dropped.
+
+## Amendment 1 (2026-10-09, before any rubric run on real data)
+
+Motivated by grounding the design on the published precedent and the
+upstream judge-validity study (both summarized in
+`docs/related_work.md`), the model specification is amended as follows:
+
+1. **Subfield control.** The primary subfield control is the
+   corpus-derived topic (`src/outcomes/topics.py`: TF-IDF over cleaned
+   title+abstract, truncated SVD, k-means, k = 15, seed 20261008,
+   held-out stability reported), entering as fixed effects. The OpenAlex
+   concept (ten largest, rest pooled) is the robustness alternative.
+   Reason: the precedent shows a Simpson's reversal in the
+   readability-citation association across vs within topics, so the
+   subfield variable is load-bearing.
+2. **Confound functional form.** `abstract_word_count` and
+   `author_count` enter as logs (the negative-control role of abstract
+   length is unchanged).
+3. **Standardization.** All continuous predictors are z-scored on the
+   estimation sample, so reported coefficients are standardized and
+   directly comparable to the precedent's Flesch anchor (0.026–0.049).
+   Binary predictors stay 0/1.
+4. **Citation maturity.** The most recent year in the data is excluded
+   from all regressions as citation-immature.
+5. **Robustness specs** (reported alongside the primary random-intercept
+   models, in `mixed_effects_robustness.csv`): (a) OLS with year fixed
+   effects and standard errors clustered by year — the precedent's exact
+   design; (b) the primary spec restricted to papers before 2023, since
+   the judge-familiarity confound identified by the upstream study and
+   citation immaturity both concentrate after 2022.
+6. **Tier-2 human anchoring.** In addition to the Tier-3 hand labels, a
+   seeded validation set of 100 abstracts is hand-labeled on the three
+   Tier-2 prompts (`src/rubric/hand_label.py`, seed 20261008), and
+   judge–human agreement for Tier 2 is reported in
+   `judge_validity.csv`. Per the upstream study, inter-judge agreement
+   is reported but never treated as evidence of validity, and Tier-2
+   score distributions are reported so scale collapse is visible.
 
 ## Exploratory labeling rule
 

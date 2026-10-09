@@ -16,6 +16,8 @@ Stages:
              linguistic_complexity     spaCy: parse depth, NP density, passive, TTR
   outcomes   outcomes/openalex        OpenAlex match -> citations, subfield,
                                       arXiv linkage, age-normalized outcomes
+             outcomes/topics          corpus-derived topics (TF-IDF+SVD+k-means),
+                                      the primary subfield control
   rubric_abstract rubric/tier1        Tier-1 deterministic features + Tier-2
                                       judge medians -> rubric_abstract.parquet
   sample     sample/stratify          stratified year-band x citation-tercile
@@ -70,7 +72,8 @@ STAGES: list[tuple[str, list[list[str]]]] = [
                      ["src/metrics/linguistic_complexity.py",
                       "--processed-dir", "data/processed",
                       "--out-base", "data/per_paper", "--venues", "neurips"]]),
-    ("outcomes",        [["src/outcomes/openalex.py"]]),
+    ("outcomes",        [["src/outcomes/openalex.py"],
+                         ["src/outcomes/topics.py"]]),
     ("rubric_abstract", [["src/rubric/tier1.py"]]),
     ("sample",          [["src/sample/stratify.py"]]),
     ("fulltext",        [["src/fulltext/sections.py"]]),

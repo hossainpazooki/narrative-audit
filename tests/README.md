@@ -1,7 +1,7 @@
 # tests
 
-356 tests covering what the pipeline run cannot: the 269 inherited from
-abstract-audit, and 87 for the narrative-audit layer.
+377 tests covering what the pipeline run cannot: the 269 inherited from
+abstract-audit, and 108 for the narrative-audit layer.
 
 ## What these are for
 
@@ -51,6 +51,20 @@ list:
   cap and replacement ordering.
 - **Verify** (`test_verify_diff.py`): an injected one-byte diff fails,
   on both the byte-for-byte and the atol=0 numeric path.
+- **Topics** (`test_topics.py`): the corpus-derived subfield control is
+  deterministic in (corpus, seed) and independent of input row order —
+  it enters a preregistered model, so this is a correctness property,
+  not a convenience. Plus separable-group recovery and tiny-corpus edges.
+- **Hand labels** (`test_hand_label.py`): seeded draws reproduce, and
+  validation rejects exactly what a spreadsheet round-trip produces —
+  empty cells, non-integers, out-of-range scores, non-boolean values,
+  unknown features.
+- **Regression design** (`test_mixed_effects_prepare.py`): the
+  Amendment-1 invariants — immature most-recent year excluded,
+  continuous predictors standardized, binaries untouched, log
+  confounds, topic fixed effects preferred over the OpenAlex fallback —
+  and a planted-effect smoke of both the random-intercept and the
+  FE+clustered-SE specs.
 
 ## What is deliberately not tested
 

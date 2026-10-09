@@ -192,3 +192,9 @@ From the `outcomes` stage (`src/outcomes/`): `citations`,
 `subfield` (top OpenAlex concept), `arxiv_id`, `arxiv_v1_date`, and
 `preprint_before_conference`. `abstract_word_count` (from the hedging
 metric) is the preregistered negative control.
+
+The primary subfield control in the regressions is not the OpenAlex
+concept but the corpus-derived topic (`src/outcomes/topics.py`,
+`data/outcomes/topics.parquet`); see `docs/related_work.md` for why the
+subfield variable is load-bearing, and preregistration Amendment 1 for
+the spec.

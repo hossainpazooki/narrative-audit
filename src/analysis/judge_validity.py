@@ -110,7 +110,31 @@ def main() -> None:
                          "value": round(k, 6) if not np.isnan(k) else np.nan,
                          "n": int((joined.notna().all(axis=1)).sum())})
 
-    # judge-human: hand labels vs aggregated Tier-3 verdicts
+    # judge-human, Tier 2: hand labels vs cross-model mean of medians.
+    # Spearman, since the scales are ordinal. Per the upstream study
+    # (docs/related_work.md) this leg, not judge-judge agreement, is the
+    # evidence that the judges measure the construct.
+    hand2_path = os.path.join(DATA, "hand_labels", "tier2.csv")
+    rub_path = os.path.join(DATA, "rubric", "rubric_abstract.parquet")
+    if os.path.exists(hand2_path) and os.path.exists(rub_path):
+        hand2 = pd.read_csv(hand2_path, dtype={"paper_id": str})
+        rub = pd.read_parquet(rub_path).set_index("paper_id")
+        for prompt in hand2["prompt"].unique():
+            jcol = f"judge_{prompt}"
+            if jcol not in rub.columns:
+                continue
+            sub = hand2[hand2["prompt"] == prompt].set_index("paper_id")["value"]
+            joined = pd.concat([sub, rub[jcol]], axis=1, join="inner").dropna()
+            if len(joined) >= 10:
+                rho, _ = spearmanr(joined.iloc[:, 0], joined.iloc[:, 1])
+                rows.append({"kind": "judge-human", "a": "hand", "b": jcol,
+                             "stat": "spearman_rho",
+                             "value": round(float(rho), 6), "n": len(joined)})
+    else:
+        print("  no Tier-2 hand labels (data/hand_labels/tier2.csv); "
+              "tier2 judge-human skipped")
+
+    # judge-human, Tier 3: hand labels vs aggregated verdicts
     hand_path = os.path.join(DATA, "hand_labels", "tier3.csv")
     pq_path = os.path.join(DATA, "rubric", "rubric_fulltext.parquet")
     if os.path.exists(hand_path) and os.path.exists(pq_path):

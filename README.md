@@ -42,6 +42,24 @@ the Nanda section it derives from, its tier, and how it is checked.
 committed before any `rubric_*` stage runs; the rubric stages refuse to run
 without it.
 
+The design is grounded on three papers, summarized with their design
+consequences in [`docs/related_work.md`](docs/related_work.md) (copies in
+[`docs/papers/`](docs/papers/)):
+
+- [Rangarajan & Krishnan 2026](docs/papers/rangarajan-krishnan-2026-llm-judges-vs-readability-metrics.pdf)
+  — the upstream abstract-audit study: LLM judge panels pass every
+  reliability check while disagreeing in direction with human-grounded
+  readability metrics, which is why Tier-2 judges here are anchored to
+  hand labels, not inter-judge agreement.
+- [*Measurable Writing Standards for AI-Native Venues* (2026 submission)](docs/papers/anon-2026-measurable-writing-standards.pdf)
+  — the citation precedent: readability predicts citations within
+  subfields but reverses across them, which is why the primary subfield
+  control here is corpus-derived topics and the regression spec mirrors
+  theirs.
+- [Arditi et al. 2024](docs/papers/arditi-etal-2024-refusal-single-direction.pdf)
+  — the refusal paper, the source post's own annotated-abstract case
+  study and this repo's role-sequence test fixture.
+
 ## Corpus
 
 NeurIPS abstracts are not redistributed here. `src/scraping/scrape_neurips.py`
@@ -54,6 +72,8 @@ record resolves to its origin.
 ```
 src/            pipeline (abstract-audit stages + outcomes, rubric, sample, fulltext)
 docs/rubric.md  every rubric feature: definition, source section, tier, check
+docs/related_work.md  the papers this design is grounded on, and how
+docs/papers/    copies of those papers
 preregistration.md
 tests/          tests, documented in tests/README.md
 paper/          figure sources, their generators, and rendered figures
