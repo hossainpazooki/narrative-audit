@@ -1,0 +1,37 @@
+{
+  "_comment": [
+    "Cue phrases for the Tier-1 claim_strength feature. Classes follow the",
+    "Nanda post's calibration ladder (Crafting claims): guarantees,",
+    "systematic claims, hedged claims, existence-proof claims. Matching is",
+    "case-insensitive on word boundaries; the class with the most matched",
+    "cues wins and ties (including zero matches) resolve to 'hedged',",
+    "the weakest reading. docs/rubric.md documents the feature."
+  ],
+  "guarantee": [
+    "we prove", "proof", "provably", "theorem", "lemma", "corollary",
+    "guarantee", "guarantees", "guaranteed", "necessarily", "always",
+    "exactly", "optimal", "optimally", "in all cases", "must hold",
+    "it follows that", "we derive a bound", "lower bound", "upper bound"
+  ],
+  "systematic": [
+    "across all", "across every", "consistently", "systematically",
+    "in every case", "on every", "holds across", "across diverse",
+    "comprehensive", "extensive experiments", "we benchmark",
+    "wide range of", "broad range of", "across multiple", "across both",
+    "generalizes across", "robust across", "universally"
+  ],
+  "hedged": [
+    "suggests", "suggest that", "may", "might", "appears", "appear to",
+    "seems", "seem to", "likely", "indicates", "indicate that",
+    "preliminary", "we believe", "we conjecture", "we hypothesize",
+    "tends to", "tend to", "often", "in many cases", "can sometimes",
+    "potentially", "possibly", "evidence that", "consistent with"
+  ],
+  "existence": [
+    "there exists", "there exist", "we exhibit", "we construct",
+    "an example", "one example", "a case where", "at least one",
+    "proof of concept", "it is possible to", "can be found",
+    "we identify a single", "we identify an instance", "a counterexample",
+    "we demonstrate the existence", "for the first time"
+  ]
+}

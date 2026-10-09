@@ -1,0 +1,43 @@
+% Standalone rendering of every figure in the paper, so the figure sources in
+% this repository can be built and checked without the manuscript.
+%
+%   cd paper && pdflatex -interaction=nonstopmode figures.tex
+%
+% Data comes from ../data/pgfplots, which the pipeline writes. twocolumn is
+% required because four of the six are figure* (full-width) environments.
+% The tikz/pgfplots setup below matches the manuscript preamble, so the
+% figures render as they do in the paper.
+\documentclass[twocolumn,10pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.18,
+  every axis/.append style={
+    /pgf/number format/1000 sep={},
+    /pgf/number format/fixed,
+  }
+}
+\usepgfplotslibrary{groupplots}
+\usepackage{caption}
+
+\title{abstract-audit: figure sources}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\input{figs/fig_visual_abstract}
+\input{figs/fig_readability_flesch}
+\input{figs/fig_readability}
+\input{figs/fig_llm}
+\input{figs/fig_llm_permodel}
+\input{figs/fig_judge_heatmap}
+
+\end{document}

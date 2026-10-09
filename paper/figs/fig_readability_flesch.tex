@@ -1,0 +1,39 @@
+% Flesch Reading Ease on NeurIPS abstracts (body figure, NeurIPS only).
+% Cross-venue and all-15-metric versions are in the appendix.
+% Data: ../data/pgfplots/readability_flesch_ease.csv
+% Higher values = easier reading.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.92\linewidth, height=5cm,
+    xlabel={Year},
+    ylabel={Flesch Reading Ease (\textuparrow\ easier)},
+    xtick distance=4,
+    x tick label style={rotate=45, anchor=east, font=\tiny,
+                        /pgf/number format/1000 sep={}},
+    ytick align=inside,
+    tick label style={font=\tiny},
+    label style={font=\small},
+    enlarge x limits=0.02,
+  ]
+  \addplot[color={rgb,255:red,44;green,160;blue,44}, solid, very thick]
+    table[x=year, y=neurips, col sep=comma]
+    {../data/pgfplots/readability_flesch_ease.csv};
+  % ChatGPT launch marker (late 2022)
+  \draw[black, dashed, semithick] (axis cs:2022,-5) -- (axis cs:2022,50);
+  \node[font=\tiny, rotate=90, anchor=south west]
+    at (axis cs:2022.2,18) {ChatGPT (2022)};
+\end{axis}
+\end{tikzpicture}
+\caption{\textbf{Flesch Reading Ease on NeurIPS abstracts,
+  1987--2025.}
+  Higher values indicate easier reading (\textuparrow). NeurIPS
+  falls from approximately 24 in 1987 to approximately 8 in 2025,
+  a sustained decline. All 15 classical metrics move in the same
+  direction on NeurIPS (Appendix~\ref{app:readability}). Vertical dashed line marks the
+  late-2022 availability of widely-used instruction-tuned writing
+  assistants.}
+\label{fig:readability-flesch}
+\end{figure}

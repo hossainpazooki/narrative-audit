@@ -1,0 +1,37 @@
+# Core pipeline. Versions are the ones the published figures were built with.
+# textstat in particular is pinned exactly: its formula implementations have
+# changed between releases, so an unpinned install can shift every readability
+# series by a fraction of a point.
+pandas==3.0.2
+numpy==2.4.4
+matplotlib==3.10.8
+textstat==0.7.13
+spacy==3.8.13
+pydantic==2.13.3
+
+# narrative-audit additions. pyarrow writes the parquet outputs and is
+# pinned for the same reason as textstat: verify.py compares those files
+# byte for byte. scipy/statsmodels produce the correlation and
+# mixed-effects tables compared numerically at atol=0.
+pyarrow==25.0.1
+scipy==1.18.1
+statsmodels==0.15.0
+requests==2.34.2
+
+# Full-text stage only (the pipeline runs without it when no sample exists):
+# pymupdf parses PDFs on the fallback path; GROBID is an external server
+# (GROBID_URL), not a Python dependency.
+pymupdf==1.28.2
+
+# The spaCy model is a separate download and its version is part of the
+# result: parse depth, NP density, passive rate, TTR and the noun/verb counts
+# all come from this parser.
+#   python -m spacy download en_core_web_sm    # en_core_web_sm==3.8.0
+
+# Only needed to re-score abstracts with the LLM judges (src/metrics/llm_scores.py).
+# The pipeline does not import these; the judge scores are shipped in
+# data/per_paper/llm_scores/. Scoring 30,595 abstracts on six models needs a GPU.
+#   torch
+#   transformers
+#   accelerate
+#   bitsandbytes

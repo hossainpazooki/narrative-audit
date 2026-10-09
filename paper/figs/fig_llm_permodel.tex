@@ -1,0 +1,115 @@
+% Per-model standardized judge scores, one panel per prompt. The body claim
+% is that every model under every prompt shows the same shape; the
+% model-averaged Figure 3 cannot show that, so this figure does.
+% Data: ../data/pgfplots/llm_scores_standardized_{prompt}.csv
+\pgfplotsset{
+  permodel/.style={
+    width=0.245\textwidth, height=3.7cm, scale only axis,
+    xmin=1985, xmax=2026, ymin=-3.2, ymax=6.2,
+    xtick={1990,2005,2020},
+    ytick={-2,0,2,4,6},
+    tick label style={font=\tiny, /pgf/number format/1000 sep={}},
+    label style={font=\scriptsize},
+    title style={font=\small, yshift=-0.5mm},
+    grid=major, grid style={gray!18, line width=.3pt},
+    axis line style={gray!55},
+    tick style={gray!55},
+  }
+}
+
+\begin{figure*}[t]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+  group style={group size=3 by 1, horizontal sep=0.85cm},
+  permodel]
+
+\nextgroupplot[title={\texttt{simple}}, ylabel={Judge score ($z$)}]
+  \addplot[color={rgb,255:red,31;green,119;blue,180}, thick]
+    table[x=year, y=Gemma-3-27B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_simple.csv};
+  \addplot[color={rgb,255:red,255;green,127;blue,14}, thick]
+    table[x=year, y=Gemma-4-31B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_simple.csv};
+  \addplot[color={rgb,255:red,44;green,160;blue,44}, thick]
+    table[x=year, y=Llama-3.1-8B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_simple.csv};
+  \addplot[color={rgb,255:red,214;green,39;blue,40}, thick]
+    table[x=year, y=Mistral-7B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_simple.csv};
+  \addplot[color={rgb,255:red,148;green,103;blue,189}, thick]
+    table[x=year, y=Mixtral-8x7B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_simple.csv};
+  \addplot[color={rgb,255:red,127;green,127;blue,127}, thick]
+    table[x=year, y=Qwen2.5-32B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_simple.csv};
+  \draw[black, densely dashed, semithick]
+    (axis cs:2022,-3.2) -- (axis cs:2022,6.2);
+
+\nextgroupplot[title={\texttt{ascb}}, xlabel={Year},
+  legend style={font=\tiny, legend columns=-1, at={(0.5,-0.40)},
+                anchor=north, draw=gray!45, fill=white,
+                column sep=4pt, inner sep=2pt},
+  legend cell align=left]
+  \addplot[color={rgb,255:red,31;green,119;blue,180}, thick]
+    table[x=year, y=Gemma-3-27B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_ascb.csv};
+  \addplot[color={rgb,255:red,255;green,127;blue,14}, thick]
+    table[x=year, y=Gemma-4-31B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_ascb.csv};
+  \addplot[color={rgb,255:red,44;green,160;blue,44}, thick]
+    table[x=year, y=Llama-3.1-8B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_ascb.csv};
+  \addplot[color={rgb,255:red,214;green,39;blue,40}, thick]
+    table[x=year, y=Mistral-7B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_ascb.csv};
+  \addplot[color={rgb,255:red,148;green,103;blue,189}, thick]
+    table[x=year, y=Mixtral-8x7B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_ascb.csv};
+  \addplot[color={rgb,255:red,127;green,127;blue,127}, thick]
+    table[x=year, y=Qwen2.5-32B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_ascb.csv};
+  \draw[black, densely dashed, semithick]
+    (axis cs:2022,-3.2) -- (axis cs:2022,6.2);
+  \legend{Gemma-3-27B, Gemma-4-31B, Llama-3.1-8B, Mistral-7B,
+          Mixtral-8x7B, Qwen2.5-32B}
+
+\nextgroupplot[title={\texttt{own\_reasoning}}]
+  \addplot[color={rgb,255:red,31;green,119;blue,180}, thick]
+    table[x=year, y=Gemma-3-27B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_own_reasoning.csv};
+  \addplot[color={rgb,255:red,255;green,127;blue,14}, thick]
+    table[x=year, y=Gemma-4-31B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_own_reasoning.csv};
+  \addplot[color={rgb,255:red,44;green,160;blue,44}, thick]
+    table[x=year, y=Llama-3.1-8B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_own_reasoning.csv};
+  \addplot[color={rgb,255:red,214;green,39;blue,40}, thick]
+    table[x=year, y=Mistral-7B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_own_reasoning.csv};
+  \addplot[color={rgb,255:red,148;green,103;blue,189}, thick]
+    table[x=year, y=Mixtral-8x7B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_own_reasoning.csv};
+  \addplot[color={rgb,255:red,127;green,127;blue,127}, thick]
+    table[x=year, y=Qwen2.5-32B-Instruct_z, col sep=comma]
+    {../data/pgfplots/llm_scores_standardized_own_reasoning.csv};
+  \draw[black, densely dashed, semithick]
+    (axis cs:2022,-3.2) -- (axis cs:2022,6.2);
+
+\end{groupplot}
+\end{tikzpicture}
+\caption{\textbf{Per-model judge scores by prompt template, standardized
+  separately.}
+  Each panel is one prompt template and each line one model, standardized to
+  its own 1987 to 2022 mean and standard deviation. The dashed line marks late
+  2022. For each combination we fit a straight line through its yearly scores.
+  The slope of that line is the average change in $z$ per year. Before 2022
+  the slopes point in no consistent direction, nine of the 18 upward and nine
+  downward, and none is steeper than 0.08 $z$ per year, which is small against
+  a year-to-year spread of about 4 $z$. After 2022 all 18 point the same way,
+  rising by between 1.24 and 3.94 $z$. The model-averaged series in
+  Figure~\ref{fig:llm-judge} does not show the pre-2022 level differences or
+  the threefold spread in the size of the rise, which follows from the
+  differing baseline standard deviations.}
+\label{fig:llm-permodel}
+\end{figure*}

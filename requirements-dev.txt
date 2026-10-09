@@ -1,0 +1,4 @@
+# Test dependencies. Not needed to run the pipeline.
+#   pip install -r requirements-dev.txt && pytest
+pytest==9.1.1
+pytest-cov==7.1.0

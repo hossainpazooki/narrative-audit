@@ -1,0 +1,15 @@
+# Everything under data/ is produced by the pipeline. Delete the directory and
+# `python main.py` rebuilds it. Nothing here is tracked, and the directory does
+# not exist in a fresh clone; each stage creates what it needs.
+data/
+
+# LaTeX intermediates. figures.pdf itself is tracked: it is the rendered
+# output of the figure sources, readable without a TeX installation.
+paper/*.aux
+paper/*.log
+paper/*.out
+
+__pycache__/
+*.pyc
+.DS_Store
+venv/

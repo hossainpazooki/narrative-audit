@@ -1,0 +1,104 @@
+% Classical readability on NeurIPS only, appendix, split into two 3-column
+% figures. Data: ../data/pgfplots/readability_<metric>.csv (neurips column).
+
+\providecommand{\readpanel}[3]{%
+  \nextgroupplot[title={\tiny #1~[#3]},
+                 title style={font=\tiny, yshift=-1.5mm}]
+  \addplot[color={rgb,255:red,44;green,160;blue,44}, dashdotted, very thick]
+    table[x=year, y=neurips, col sep=comma]{../data/pgfplots/#2.csv};
+  \draw[black, dashed, semithick]
+    ({axis cs:2022,0} |- {rel axis cs:0,0})
+    -- ({axis cs:2022,0} |- {rel axis cs:0,1});
+}
+
+% ── Figure A: 8 readability metrics, 3 by 3 layout (1 blank slot) ────────────
+\begin{figure*}[t]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={
+      group size=3 by 3,
+      horizontal sep=8mm,
+      vertical sep=12mm,
+    },
+    width=40mm, height=2.4cm,
+    scale only axis,
+    xlabel={}, ylabel={},
+    xtick distance=12,
+    x tick label style={rotate=55, anchor=east, font=\tiny,
+                        /pgf/number format/1000 sep={}},
+    y tick label style={font=\tiny},
+    ytick align=inside,
+    enlarge x limits=0.02,
+    tick label style={font=\tiny},
+  ]
+  \readpanel{Flesch Ease}{readability_flesch_ease}{\textuparrow}
+  \readpanel{Flesch--Kincaid}{readability_flesch_kincaid}{\textdownarrow}
+  \readpanel{Gunning Fog}{readability_gunning_fog}{\textdownarrow}
+  \readpanel{SMOG}{readability_smog}{\textdownarrow}
+  \readpanel{Dale--Chall}{readability_dale_chall}{\textdownarrow}
+  \readpanel{Spache}{readability_spache}{\textdownarrow}
+  \readpanel{Coleman--Liau}{readability_coleman_liau}{\textdownarrow}
+  \readpanel{ARI}{readability_ari}{\textdownarrow}
+  % 9th slot blank for layout
+  \nextgroupplot[hide axis, scale only axis, width=40mm, height=2.4cm]
+\end{groupplot}
+\end{tikzpicture}
+
+\caption{\textbf{Classical readability metrics on NeurIPS, part A: Flesch
+  family and grade-level formulas, 1987--2025.}
+  Arrows indicate the direction of easier reading
+  (\textuparrow\ = higher is better; \textdownarrow\ = lower is
+  better). Every grade-level metric rises on NeurIPS after 2015 and
+  accelerates after 2020, and Flesch Reading Ease drops correspondingly.
+  Vertical dashed lines mark the late-2022 availability of instruction-tuned
+  writing assistants. Part B with the remaining seven metrics appears in
+  Figure~\ref{fig:app-readability-b}.}
+\label{fig:app-readability}
+\end{figure*}
+
+% ── Figure B: 7 readability metrics, 3 by 3 layout (2 blank slots) ───────────
+\begin{figure*}[t]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={
+      group size=3 by 3,
+      horizontal sep=8mm,
+      vertical sep=12mm,
+    },
+    width=40mm, height=2.4cm,
+    scale only axis,
+    xlabel={}, ylabel={},
+    xtick distance=12,
+    x tick label style={rotate=55, anchor=east, font=\tiny,
+                        /pgf/number format/1000 sep={}},
+    y tick label style={font=\tiny},
+    ytick align=inside,
+    enlarge x limits=0.02,
+    tick label style={font=\tiny},
+  ]
+  \readpanel{Linsear Write}{readability_linsear_write}{\textdownarrow}
+  \readpanel{LIX}{readability_lix}{\textdownarrow}
+  \readpanel{RIX}{readability_rix}{\textdownarrow}
+  \readpanel{FORCAST}{readability_forcast}{\textdownarrow}
+  \readpanel{Pwr--Smnr--Kearl}{readability_powers_sumner_kearl}{\textdownarrow}
+  \readpanel{Sentence length}{readability_avg_sentence_length}{\textdownarrow}
+  \readpanel{Syllables/word}{readability_avg_syllables_per_word}{\textdownarrow}
+  % Two blank slots for layout
+  \nextgroupplot[hide axis, scale only axis, width=40mm, height=2.4cm]
+  \nextgroupplot[hide axis, scale only axis, width=40mm, height=2.4cm]
+\end{groupplot}
+\end{tikzpicture}
+
+\caption{\textbf{Classical readability metrics on NeurIPS, part B: Linsear
+  Write, LIX, RIX, FORCAST, Powers--Sumner--Kearl, sentence
+  length, and syllables per word, 1987--2025.}
+  Arrows indicate the direction of easier reading
+  (\textdownarrow\ = lower is better). Vertical dashed lines mark
+  the late-2022 availability of instruction-tuned writing
+  assistants. Part A with the Flesch family and the first eight
+  grade-level formulas appears in
+  Figure~\ref{fig:app-readability}.}
+\label{fig:app-readability-b}
+\end{figure*}
