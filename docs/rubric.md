@@ -80,11 +80,21 @@ distance measures ordering and omissions, not abstract length.
 **Check.** Sentence labels come from cue counts
 (`src/rubric/lexicon/role_cues.json`) plus position priors; ties resolve
 toward template order and cue-less sentences continue the previous role
-(first sentence: `situate`). The post's own case study — it opens with
-the abstract of *Refusal in Language Models Is Mediated by a Single
-Direction* (Arditi et al., NeurIPS 2024) "broken down into the purpose of
-each sentence" — is the test fixture: it labels
-`situate, gap, contribution ×3, evidence, impact ×2` and scores distance 0.
+(first sentence: `situate`). The post's own case study — its "Annotated
+Abstract" figure breaks the abstract of *Refusal in Language Models Is
+Mediated by a Single Direction* (Arditi et al., NeurIPS 2024) down into
+the purpose of each sentence — is the test fixture. The figure's eight
+annotation labels project onto the five template roles as follows, and
+the labeler reproduces that projection exactly
+(`situate, gap, contribution ×3, evidence, impact ×2`, distance 0):
+
+| Post annotation | Template role |
+|---|---|
+| Topic | `situate` |
+| Motivation | `gap` |
+| Contribution; Detail/Nuance; Contribution 2 | `contribution` |
+| Evidence; Weaker result | `evidence` |
+| Narrow impact; Broad impact | `impact` |
 
 ### `jargon_density` (float)
 

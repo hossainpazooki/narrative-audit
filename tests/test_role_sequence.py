@@ -1,9 +1,13 @@
 """role_sequence_dist: the source post's worked example as fixture.
 
-The Nanda post demonstrates its abstract template on *Refusal in Language
-Models Is Mediated by a Single Direction* (Arditi et al., NeurIPS 2024).
-That abstract follows the template exactly, so it pins both the
-sentence-role labeling and the zero distance. The edge cases cover what
+The Nanda post's "Annotated Abstract" figure breaks the abstract of
+*Refusal in Language Models Is Mediated by a Single Direction* (Arditi et
+al., NeurIPS 2024) down sentence by sentence: Topic, Motivation,
+Contribution, Detail/Nuance, Evidence / Contribution 2, Weaker result,
+Narrow impact, Broad impact. Projected onto the five template roles
+(docs/rubric.md gives the mapping) that is situate, gap, contribution x3,
+evidence, impact x2 — which is what the labeler must produce, and which
+collapses to the template exactly (distance 0). The edge cases cover what
 the corpus never provides: empty text, one sentence, abbreviations at
 sentence boundaries.
 """
@@ -40,6 +44,9 @@ def test_refusal_sentence_count():
 
 
 def test_refusal_roles():
+    # the post's figure, projected: Topic, Motivation, Contribution,
+    # Detail/Nuance, Evidence / Contribution 2, Weaker result,
+    # Narrow impact, Broad impact
     labels = label_roles(split_sentences(REFUSAL))
     assert labels == ["situate", "gap", "contribution", "contribution",
                       "contribution", "evidence", "impact", "impact"]
