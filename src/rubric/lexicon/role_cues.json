@@ -1,0 +1,45 @@
+{
+  "_comment": [
+    "Cue phrases for the Tier-1 role_sequence_dist sentence labeler.",
+    "Roles are the five slots of the Nanda abstract template (Abstract",
+    "section of the post): situate, gap, contribution, evidence, impact.",
+    "Matching is case-insensitive on word boundaries. tier1.py combines",
+    "these counts with position priors; docs/rubric.md documents the rule."
+  ],
+  "situate": [
+    "is a", "are a", "have become", "has become", "is widely", "are widely",
+    "in recent years", "recently", "is central", "are central",
+    "plays a key role", "play a key role", "is fundamental", "are used to",
+    "is an important", "are an important", "has emerged", "have emerged",
+    "are fine-tuned", "is fine-tuned", "are trained", "is trained"
+  ],
+  "gap": [
+    "however", "but", "yet", "nevertheless", "unfortunately", "while",
+    "although", "despite", "remains", "remain", "poorly understood",
+    "unclear", "unknown", "little is known", "lack", "lacks", "lacking",
+    "challenge", "challenging", "difficult", "open problem", "open question",
+    "no existing", "fails", "fail to", "limited", "expensive", "costly"
+  ],
+  "contribution": [
+    "we propose", "we present", "we introduce", "we show", "we find",
+    "we develop", "we describe", "we study", "in this work", "in this paper",
+    "this paper", "this work", "here we", "our method", "our approach",
+    "we formalize", "we define", "we prove", "we investigate"
+  ],
+  "evidence": [
+    "we evaluate", "analyze", "we test", "we measure", "we compare",
+    "we conduct", "experiments", "experimental", "empirically", "results show",
+    "achieves", "achieve", "outperforms", "outperform", "improves",
+    "improvement", "accuracy", "error rate", "benchmark", "benchmarks",
+    "state-of-the-art", "state of the art", "baselines", "ablation",
+    "on average", "significantly"
+  ],
+  "impact": [
+    "implications", "underscore", "underscores", "highlight", "highlights",
+    "suggests that", "pave the way", "paves the way", "future work",
+    "future research", "more broadly", "broadly", "practical", "practitioners",
+    "these findings", "our findings", "our results suggest", "takeaway",
+    "we release", "publicly available", "open-source our", "enabling",
+    "demonstrates the potential", "step towards", "step toward"
+  ]
+}

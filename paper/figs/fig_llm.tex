@@ -1,0 +1,56 @@
+% LLM-as-judge: model-averaged z-scores, one curve per prompt.
+% Each curve is the mean of all 6 model z-scores for that prompt.
+% Z-scores are standardized to each model's own 1987--2022 baseline.
+% Data: ../data/pgfplots/llm_scores_model_avg_{prompt}.csv
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.88\linewidth, height=5cm,
+    xlabel={Year},
+    ylabel={Model-averaged readability (z-score)},
+    xtick distance=4,
+    x tick label style={rotate=45, anchor=east, font=\tiny,
+                        /pgf/number format/1000 sep={}},
+    ytick align=inside,
+    ymin=-2, ymax=5,
+    legend columns=3,
+    legend style={draw=none, fill=none, font=\scriptsize,
+                  cells={anchor=west}, column sep=8pt,
+                  at={(0.5,-0.28)}, anchor=north},
+    tick label style={font=\tiny},
+    label style={font=\small},
+    enlarge x limits=0.02,
+  ]
+  \addplot[color={rgb,255:red,44;green,160;blue,44}, solid, very thick]
+    table[x=year, y=avg_z, col sep=comma]
+    {../data/pgfplots/llm_scores_model_avg_simple.csv};
+  \addlegendentry{Simple}
+  \addplot[color={rgb,255:red,148;green,103;blue,189}, dashed, very thick]
+    table[x=year, y=avg_z, col sep=comma]
+    {../data/pgfplots/llm_scores_model_avg_ascb.csv};
+  \addlegendentry{ASCB}
+  \addplot[color={rgb,255:red,214;green,39;blue,40}, dashdotted, very thick]
+    table[x=year, y=avg_z, col sep=comma]
+    {../data/pgfplots/llm_scores_model_avg_own_reasoning.csv};
+  \addlegendentry{Own reasoning}
+  % Baseline reference at z = 0
+  \addplot[black, dotted, thin, forget plot, domain=1987:2024] {0};
+  % ChatGPT launch marker (line only; the text label appears
+  % only in fig:readability-flesch, the first chronological figure).
+  \draw[black, dashed, semithick] (axis cs:2022,-2) -- (axis cs:2022,5);
+\end{axis}
+\end{tikzpicture}
+\caption{\textbf{LLM as judge readability on NeurIPS abstracts,
+  1987--2024.}
+  Each curve is the mean z-score across all six open-weight
+  models for one prompt variant, standardized to each model's
+  own 1987--2022 baseline (dotted line at zero).
+  Under all three prompts the judged readability is
+  approximately flat before 2022 and rises after the availability
+  of instruction-tuned writing assistants (vertical dashed line).
+  The direction is opposite to the classical readability decline
+  in Figure~\ref{fig:readability-flesch}.}
+\label{fig:llm-judge}
+\end{figure}

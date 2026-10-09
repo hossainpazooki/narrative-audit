@@ -1,0 +1,57 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software, please cite it as below. narrative-audit is
+  a fork of abstract-audit (Ajay Mandyam Rangarajan); if you use the
+  inherited pipeline, metrics or judge protocol, please also cite the
+  abstract-audit software and its paper (references below).
+type: software
+title: narrative-audit
+authors:
+  - family-names: Pazooki
+    given-names: Hossain
+repository-code: https://github.com/hossainpazooki/narrative-audit
+license: MIT
+abstract: >-
+  A measurement pipeline testing whether narrative quality, as
+  operationalized from Neel Nanda's "Highly Opinionated Advice on How
+  to Write ML Papers", predicts age-normalized citations among accepted
+  NeurIPS papers (1987-2025). Built on the abstract-audit pipeline.
+references:
+  - type: software
+    title: abstract-audit
+    authors:
+      - family-names: Mandyam Rangarajan
+        given-names: Ajay
+    repository-code: https://github.com/armandyam/abstract-audit
+    license: MIT
+    notes: >-
+      The base pipeline this repository forks: stage runner, schema,
+      classical writing metrics, LLM-judge protocol, reference outputs
+      and verification. Derived data (judge_scores/, reference/) is
+      CC BY 4.0, see LICENSE-DATA.
+  - type: conference-paper
+    title: >-
+      LLM Judges Agree With Each Other and Disagree With Human-Grounded
+      Readability Metrics
+    authors:
+      - family-names: Mandyam Rangarajan
+        given-names: Ajay
+      - family-names: Krishnan
+        given-names: Jeyashree
+    year: 2026
+    conference:
+      name: The Third Workshop on Uncertainty-Aware NLP
+    url: https://openreview.net/forum?id=sOKzkunyhD
+  - type: conference-paper
+    title: Measurable Writing Standards for AI-Native Venues
+    authors:
+      - family-names: Mandyam Rangarajan
+        given-names: Ajay
+      - family-names: Krishnan
+        given-names: Jeyashree
+    year: 2026
+    conference:
+      name: >-
+        NeurIPS 2026 Workshop on AI-Native Academia: Authorship, Peer
+        Review, and Conference Governance under AI
+    url: https://openreview.net/forum?id=JXxRLziwgY
