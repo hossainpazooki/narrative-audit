@@ -164,6 +164,13 @@ pytest
 abstract-audit: every branch that handles malformed or edge-case input has a
 test.
 
+## Citing
+
+`CITATION.cff` holds the machine-readable citation for this repository
+and its references: the abstract-audit software it forks (Ajay Mandyam
+Rangarajan) and the two grounding papers. GitHub's "Cite this
+repository" button reads it directly.
+
 ## Licence
 
 Copyright 2026 Hossain Pazooki. Portions copyright 2026 Ajay Mandyam
